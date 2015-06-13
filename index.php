@@ -1,20 +1,23 @@
+<?php $title = 'PHP Projects' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
 <meta charset="UTF-8">
-<title>PHP Basics</title>
+<title><?= $title ?></title>
 
 </head>
 <body>
 
-<h1>PHP Basics</h1>
+<h1><?= $title ?></h1>
 <ul>
 <?php
     $dir = new directoryiterator('.');
-    foreach($dir as $fileinfo){
-        if (is_dir($fileinfo)){
-            echo "<li>{$fileinfo->getfilename()}</li>";
+    $ignoredList = array('.', '..', 'css', '.git', '.c9');
+    
+    foreach($dir as $fileInfo){
+        if ($fileInfo->isDir() && !in_array($fileInfo->getfilename(), $ignoredList)){
+            echo "<li><a href=\"{$fileInfo->getfilename()}\">{$fileInfo->getfilename()}</a></li>";
         }
     }
 ?>
