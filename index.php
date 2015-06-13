@@ -9,6 +9,16 @@
 <body>
 
 <h1>PHP Basics</h1>
+<ul>
+<?php
+    $dir = new directoryiterator('.');
+    foreach($dir as $fileinfo){
+        if (is_dir($fileinfo)){
+            echo "<li>{$fileinfo->getfilename()}</li>";
+        }
+    }
+?>
+</ul>
 
 </body>
 </html>
